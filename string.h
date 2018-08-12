@@ -6,17 +6,22 @@ class String
 {
 public:
 	String();
+	String(const char*);
+	String(const String&);
+	
 	size_t size() const { return mSize; };
 	size_t capacity() const { return mCapacity; };
 	bool empty() const { return String::size() == 0; };
 	char* c_str() const { return mData.get(); }
 
-	String(const char*);
 	String& operator=(const char*);
-
+	String& operator=(String);
+	
 	char& operator[](size_t);
 	
 	bool operator==(const String&) const;
+
+	String operator+ (const String&) const;
   
   private:
     size_t mSize{0};
