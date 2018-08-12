@@ -32,18 +32,16 @@ char& String::operator[] (size_t i)
 
 bool String::operator== (const String& other) const
 {
-	if(size() != other.size())
+	if(mSize != other.mSize)
 	{
 		return false;
 	}
-	else
+
+	for(size_t i=0; i < mSize; ++i)
 	{
-		for(int i=0; i < size(); ++i)
+		if(mData[i] != other.mData[i])
 		{
-			if(mData[i] != other.mData[i])
-			{
-				return false;
-			}
+			return false;
 		}
 	}
 	return true;
