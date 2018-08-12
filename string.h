@@ -23,8 +23,8 @@ public:
 
 	String operator+ (const String&) const;
   
-  private:
-    size_t mSize{0};
-    size_t mCapacity{0};
-    std::unique_ptr<char[]> mData{nullptr};
+private:
+	size_t mSize{0};
+	size_t mCapacity{0};
+	std::unique_ptr<char[]> mData{nullptr};
 };
