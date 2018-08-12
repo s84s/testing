@@ -57,7 +57,6 @@ std::ostream& operator<< (std::ostream& os, const String& string)
 	return os;
 }
 
-
 String::String(const String& other)
 {
 	mSize = other.mSize;
@@ -97,4 +96,9 @@ String operator+ (const char* left, const String& right)
 bool operator== (const char* left, const String& right)
 {
 	return String(left) == right;
+}
+
+bool operator==(std::string left, const String& right)
+{
+  return left == std::string(right);
 }
