@@ -29,6 +29,11 @@ char& String::operator[] (size_t i)
 	return mData[i];
 }
 
+char String::operator[](size_t i) const
+{
+  return mData[i];
+}
+
 bool String::operator== (const String& other) const
 {
 	if(mSize != other.mSize)
@@ -87,4 +92,9 @@ String String::operator+ (const String& other) const
 String operator+ (const char* left, const String& right)
 {
 	return String(left) + right;
+}
+
+bool operator== (const char* left, const String& right)
+{
+	return String(left) == right;
 }
