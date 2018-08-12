@@ -23,6 +23,8 @@ public:
 	bool operator==(const String&) const;
 
 	String operator+ (const String&) const;
+	
+	operator std::string() const { return std::string(c_str()); };
   
 private:
 	size_t mSize{0};
