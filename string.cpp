@@ -18,7 +18,6 @@ String::String(const char* other)
 	mData = std::make_unique<char[]>(mSize);
 	mCapacity = mSize;
 
-	size_t i;
 	for(size_t i=0; i < mSize; ++i)
 	{
 		mData[i] = other[i];
@@ -51,4 +50,41 @@ std::ostream& operator<< (std::ostream& os, const String& string)
 {
 	os << string.c_str();
 	return os;
+}
+
+
+String::String(const String& other)
+{
+	mSize = other.mSize;
+	mCapacity = other.mCapacity;
+	mData = std::make_unique<char[]>(mCapacity);
+	for(size_t i=0; i<mSize; ++i)
+	{
+		mData[i] = other.mData[i];
+	}
+}
+
+String& String::operator= (String other)
+{
+	std::swap(mSize, other.mSize);
+	std::swap(mCapacity, other.mCapacity);
+	std::swap(mData, other.mData);
+	return *this;
+}
+
+String String::operator+ (const String& other) const
+{
+	String result = *this;
+	result.mSize += other.mSize;
+	result.mCapacity += other.mSize;
+	for(size_t i = 0; i < other.mSize; ++i)
+	{
+		result.mData[mSize+i] = other.mData[i];
+	}
+	return result;
+}
+
+String operator+ (const char* left, const String& right)
+{
+	return String(left) + right;
 }
