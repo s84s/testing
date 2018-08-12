@@ -13,11 +13,12 @@ public:
 	size_t capacity() const { return mCapacity; };
 	bool empty() const { return String::size() == 0; };
 	char* c_str() const { return mData.get(); }
-
+	
 	String& operator=(const char*);
 	String& operator=(String);
 	
 	char& operator[](size_t);
+	char operator[](size_t) const;
 	
 	bool operator==(const String&) const;
 
