@@ -12,6 +12,17 @@ size_t strlen(const char* string)
 	return lenght;
 }
 
+String::String(const String& other)
+{
+	mSize = other.mSize;
+	mCapacity = other.mCapacity;
+	mData = std::make_unique<char[]>(mCapacity);
+	for(size_t i=0; i<mSize; ++i)
+	{
+		mData[i] = other.mData[i];
+	}
+}
+
 String::String(const char* other)
 {
 	mSize = strlen(other);
@@ -57,16 +68,7 @@ std::ostream& operator<< (std::ostream& os, const String& string)
 	return os;
 }
 
-String::String(const String& other)
-{
-	mSize = other.mSize;
-	mCapacity = other.mCapacity;
-	mData = std::make_unique<char[]>(mCapacity);
-	for(size_t i=0; i<mSize; ++i)
-	{
-		mData[i] = other.mData[i];
-	}
-}
+
 
 String& String::operator= (String other)
 {
@@ -81,7 +83,7 @@ String String::operator+ (const String& other) const
 	String result = *this;
 	result.mSize += other.mSize;
 	result.mCapacity += other.mSize;
-	for(size_t i = 0; i < other.mSize; ++i)
+	for(size_t i = 0; i <= other.mSize; ++i)
 	{
 		result.mData[mSize+i] = other.mData[i];
 	}
@@ -100,5 +102,5 @@ bool operator== (const char* left, const String& right)
 
 bool operator==(std::string left, const String& right)
 {
-  return left == std::string(right);
+	return left == std::string(right);
 }
